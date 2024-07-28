@@ -5,7 +5,7 @@ using Notes.Domain;
 
 namespace Notes.Application.Interfaces
 {
-    public class INotesDbContext
+    public interface INotesDbContext
     {
         //все сущности
         DbSet<Note> Notes { get; set; }
