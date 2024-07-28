@@ -6,7 +6,7 @@ using Notes.Domain;
 
 namespace Notes.Application.Common.Mappings
 {
-    public class AssemblyMappingProfile : Profile, IMapWith<Note>
+    public class AssemblyMappingProfile : Profile
     {
         public AssemblyMappingProfile(Assembly assembly)
         {
@@ -28,12 +28,5 @@ namespace Notes.Application.Common.Mappings
                 methodInfo?.Invoke(instance, new object[] { this });
             }
         }
-
-        //пришлось унаследовать интерфейс и реализовать метод, тк какая-та ошибка
-        void IMapWith<Note>.Mapping(Profile profile)
-        {
-            profile.CreateMap(typeof(Note), GetType());
-        }
-        
     }
 }
