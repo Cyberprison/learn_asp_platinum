@@ -17,10 +17,12 @@ namespace Notes.Persistence
             )
         {
             var connectionString = configuration["DbConnection"];
+
             services.AddDbContext<NotesDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);
             });
+
             services.AddScoped<INotesDbContext>(provider => 
                 provider.GetService<NotesDbContext>());
             return services;

@@ -28,6 +28,7 @@ namespace Notes.WebApi
 
                     DbInitializer.Initialize(context);
                 }
+                
                 catch(Exception exception)
                 {
                     //позже вернутся

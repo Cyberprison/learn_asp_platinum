@@ -17,12 +17,12 @@ namespace Notes.WebApi
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -65,9 +65,6 @@ namespace Notes.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            //тк методов некоторых нет, пришлось использовать другое решение
-            //из-за версии асп до нет 2.1
-
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
@@ -76,13 +73,6 @@ namespace Notes.WebApi
             {
                 endpoints.MapControllers();
             });
-            
-            /*
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
-            */
         }
     }
 }
