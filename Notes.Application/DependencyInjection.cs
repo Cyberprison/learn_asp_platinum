@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using MediatR;
 using System.Reflection;
+using FluentValidation;
+using Notes.Application.Common.Behaviors;
 
 namespace Notes.Application
 {
@@ -14,7 +16,13 @@ namespace Notes.Application
             this IServiceCollection services
             )
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(Assembly.GetExecutingAssembly()); 
+            services.AddValidatorsFromAssemblies(
+                new[] { 
+                    Assembly.GetExecutingAssembly() 
+                });
+            services.AddTransient(typeof(IPipelineBehavior<,>),
+                typeof(ValidationBehavior<,>));
             return services;
         }
         
